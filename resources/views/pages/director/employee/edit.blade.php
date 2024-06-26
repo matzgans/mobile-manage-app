@@ -8,9 +8,11 @@
                     </div>
                     <div class="grid gap-4 lg:grid-cols-2">
                         <div class="mt-4 w-full">
-                            <form class="mx-auto max-w-full" action="{{ route('director.employee.store') }}"
+                            <form class="mx-auto max-w-full"
+                                action="{{ route('director.employee.update', ['employee' => $employee->id]) }}"
                                 method="POST">
                                 @csrf
+                                @method('PUT');
                                 <div class="mb-3 grid gap-3 lg:grid-cols-2">
                                     <div class="w-full">
                                         <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -18,7 +20,8 @@
                                         <div class="relative">
                                             <input
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
-                                                id="name" name="name" type="text" placeholder="Masukan Nama">
+                                                id="name" name="name" type="text"
+                                                value="{{ $employee->name }}" placeholder="Masukan Nama">
                                         </div>
                                     </div>
                                     <div class="w-full">
@@ -28,7 +31,7 @@
                                             <input
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                                 id="email" name="email" type="email"
-                                                placeholder="Masukan Email">
+                                                value="{{ $employee->email }}" placeholder="Masukan Email">
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +41,8 @@
                                     <div class="relative">
                                         <input
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
-                                            id="id_card" name="id_card" type="number" placeholder="Masukan Id Card">
+                                            id="id_card" name="id_card" type="number"
+                                            value="{{ $employee->id_card }}" placeholder="Masukan Id Card">
                                     </div>
                                 </div>
                                 <div class="mb-3 w-full">
@@ -48,7 +52,7 @@
                                         <input
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                             id="id_card" name="place_birth" type="string"
-                                            placeholder="Masukan Tempat Lahir">
+                                            value="{{ $employee->place_birth }}" placeholder="Masukan Tempat Lahir">
                                     </div>
                                 </div>
                                 <div class="mb-3 w-full">
@@ -58,7 +62,7 @@
                                         <input
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                             id="birth_place_date" name="date_birth" type="date"
-                                            placeholder="Masukan Tanggal Lahir">
+                                            value="{{ $employee->date_birth }}" placeholder="Masukan Tanggal Lahir">
                                     </div>
                                 </div>
                                 <div class="mb-3 grid gap-3 lg:grid-cols-2">
@@ -67,13 +71,22 @@
                                             for="religion">Agama</label>
                                         <select
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
-                                            id="religion" name="religion">
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen">Kristen</option>
-                                            <option value="Katolik">Katolik</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Budha">Budha</option>
-                                            <option value="Konghucu">Konghucu</option>
+                                            id="religion" name="religion" value="{{ $employee->religion }}">
+                                            <option value="Islam"
+                                                {{ $employee->religion == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                            <option value="Kristen"
+                                                {{ $employee->religion == 'Kristen' ? 'selected' : '' }}>Kristen
+                                            </option>
+                                            <option value="Katolik"
+                                                {{ $employee->religion == 'Katolik' ? 'selected' : '' }}>Katolik
+                                            </option>
+                                            <option value="Hindu"
+                                                {{ $employee->religion == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                            <option value="Budha"
+                                                {{ $employee->religion == 'Budha' ? 'selected' : '' }}>Budha</option>
+                                            <option value="Konghucu"
+                                                {{ $employee->religion == 'Konghucu' ? 'selected' : '' }}>Konghucu
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="w-full">
@@ -83,7 +96,7 @@
                                             <input
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                                 id="phone" name="phone" type="number"
-                                                placeholder="Masukan Nomor HP">
+                                                value="{{ $employee->phone }}" placeholder="Masukan Nomor HP">
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +123,7 @@
                                             <input
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                                 id="salary" name="salary" type="number"
-                                                placeholder="Masukan Gaji">
+                                                value="{{ $employee->salary }}" placeholder="Masukan Gaji">
                                         </div>
                                     </div>
                                 </div>
@@ -120,9 +133,9 @@
                                     <select
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                         id="division" name="devision">
-                                        <option value="IT">IT</option>
-                                        <option value="HRD">HRD</option>
-                                        <option value="Finance">Finance</option>
+                                        <option value="Directur">Directur</option>
+                                        <option value="Kepala Mekanik">Kepala Mekanik</option>
+                                        <option value="Bendahara">Bendahara</option>
                                         <option value="Marketing">Marketing</option>
                                         <option value="Operational">Operational</option>
                                     </select>
@@ -133,7 +146,7 @@
                                     <div class="relative">
                                         <textarea
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
-                                            id="address" name="address" placeholder="Masukan Alamat"></textarea>
+                                            id="address" name="address" value="{{ $employee->address }}" placeholder="Masukan Alamat">{{ $employee->address }}</textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3 grid w-full gap-3 lg:grid-cols-2">
@@ -141,7 +154,7 @@
                                         href="{{ route('director.employee.index') }}">Kembali</a>
                                     <button
                                         class="mb-2 me-2 flex items-center justify-center rounded-lg border border-secondary bg-secondary px-5 py-2.5 text-sm font-medium text-white hover:bg-orange-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-200 dark:border-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700"
-                                        type="submit">Tambah</button>
+                                        type="submit">Simpan Perubahan</button>
                                 </div>
                             </form>
                         </div>

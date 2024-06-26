@@ -72,7 +72,7 @@
                                         <td class="px-6 py-4">{{ $employee->religion }}</td>
                                         <td class="px-6 py-4">{{ $employee->phone }}</td>
                                         <td class="px-6 py-4">{{ $employee->education }}</td>
-                                        <td class="px-6 py-4">
+                                        <td class="text-nowrap px-6 py-4">
                                             {{ 'Rp ' . number_format((float) $employee->salary, 0, ',', '.') }}</td>
 
                                         <td class="px-6 py-4">{{ $employee->devision }}</td>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Director;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeStoreRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,7 +50,7 @@ class EmployeeController extends Controller
                 'email' => $employee['email'],
                 'password' => bcrypt('password'),
                 'id_card' => $employee['id_card'],
-                'date_birth' => $employee['date_birth'],
+                'date_birth' => $employee->place_birth . "," . Carbon::parse($employee['date_birth'])->format('d-m-Y'),
                 'religion' => $employee['religion'],
                 'phone' => $employee['phone'],
                 'education' => $employee['education'],
@@ -58,7 +60,7 @@ class EmployeeController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->back()->with('success', 'Data Mobil Berhasil Di Tambahkan');
+            return redirect()->back()->with('success', 'Data Karyawan Berhasil Di Tambahkan');
         } catch (\Throwable $e) {
             DB::rollback();
             return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
@@ -76,24 +78,42 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $employee)
     {
-        //
+        return view('pages.director.employee.edit', compact('employee'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EmployeeUpdateRequest $request, User $employee)
     {
-        //
+        try {
+
+            $employee->update($request->all());
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Data Karyawan Berhasil Di Ubah');
+        } catch (\Throwable $e) {
+            DB::rollback();
+            return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $employee)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $employee->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Data Karyawan Berhasil Di Hapus');
+        } catch (\Throwable $e) {
+            DB::rollback();
+            return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }
