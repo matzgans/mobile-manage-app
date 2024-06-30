@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CarSeeder::class,
             SaleSeeder::class,
-            CustomerOrders::class
+            CustomerOrdersSeeder::class
         ]);
     }
 }

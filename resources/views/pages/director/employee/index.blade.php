@@ -66,8 +66,8 @@
                                         </td>
                                         <td class="px-6 py-4">{{ $employee->id_card }}</td>
                                         <td class="px-6 py-4">{{ $employee->name }}</td>
-                                        <td class="text-nowrap px-6 py-4">{{ $employee->place_birth }},
-                                            {{ $employee->date_birth }},
+                                        <td class="text-nowrap px-6 py-4">{{ $employee->place_birth }}
+                                            {{ $employee->date_birth }}
 
                                         <td class="px-6 py-4">{{ $employee->address }}</td>
                                         <td class="px-6 py-4">{{ $employee->religion }}</td>

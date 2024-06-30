@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('car_id')->constrained('cars');
+            $table->foreignId('car_id')->constrained('cars')->cascadeOnDelete();
             $table->bigInteger('id_ktp');
             $table->string('name');
             $table->string('phone');

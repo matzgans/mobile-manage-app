@@ -50,7 +50,7 @@ class EmployeeController extends Controller
                 'email' => $employee['email'],
                 'password' => bcrypt('password'),
                 'id_card' => $employee['id_card'],
-                'date_birth' => $employee->place_birth . "," . Carbon::parse($employee['date_birth'])->format('d-m-Y'),
+                'date_birth' => $employee['date_birth'],
                 'place_birth' => $employee['place_birth'],
                 'religion' => $employee['religion'],
                 'phone' => $employee['phone'],
@@ -70,7 +70,7 @@ class EmployeeController extends Controller
                 case 'Mekanik':
                     $data->assignRole('mekanik');
                     break;
-                case 'Frondesk':
+                case 'Frontdesk':
                     $data->assignRole('frontdesk');
                     break;
             }
