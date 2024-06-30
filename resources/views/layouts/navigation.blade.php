@@ -31,6 +31,12 @@
                             </x-nav-link>
                         @break
 
+                        @case('frontdesk')
+                            <x-nav-link :href="route('frontdesk.customer_orders.index')" :active="request()->routeIs('frontdesk.customer_orders.*')">
+                                {{ __('Pesanan Pelanggan') }}
+                            </x-nav-link>
+                        @break
+
                         @default
                             <p>Anda tidak memiliki peran yang ditentukan.</p>
                     @endswitch

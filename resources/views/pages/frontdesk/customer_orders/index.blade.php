@@ -1,14 +1,17 @@
 <x-app-layout>
+
     <div class="py-12">
         <div class="mx-auto max-w-full sm:px-6 lg:px-8">
-            <div class="overflow-x-auto bg-white shadow-sm sm:rounded-lg">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="text-2xl font-bold">
-                        {{ __('Data Karyawan') }}
+
+                        {{ __('Data Pesanan Pelanggan') }}
                     </div>
                     <div class="mt-3 flex">
                         <div class="me-3 w-full">
-                            <form class="max-w-full" action="{{ route('director.employee.index') }}">
+
+                            <form class="max-w-full" action="{{ route('frontdesk.customer_orders.index') }}">
                                 <label class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     for="default-search">Search</label>
                                 <div class="relative">
@@ -20,7 +23,7 @@
                                         </svg>
                                     </div>
                                     <input
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 ps-10 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                         id="default-search" name="search" type="search"
                                         value="{{ request('search') }}" placeholder="Masukan Kode Mobil" />
                                     <button
@@ -28,59 +31,69 @@
                                         type="submit">Search</button>
                                 </div>
                             </form>
+
                         </div>
 
                         <a class="dark:focus:ring-[#3b5998]/55 text-nowrap mb-2 me-2 inline-flex items-center rounded-lg bg-secondary px-5 py-3.5 text-center text-sm font-medium text-white hover:bg-orange-400 focus:outline-none focus:ring-4 focus:ring-[#3b5998]/50"
-                            href="{{ route('director.employee.create') }}">
+                            href="{{ route('frontdesk.customer_orders.create') }}">
                             <svg class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
-                            Tambah Data Karyawan
+
+                            Tambah Data Mobil
                         </a>
+
+
                     </div>
+
                 </div>
-                <div class="overflow-x-auto px-6 pb-3">
+                <div class="relative overflow-x-auto px-6 pb-3">
                     <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
                         <thead class="bg-primary text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                             <tr class="border text-white">
-                                <th class="px-6 py-3" scope="col">No</th>
-                                <th class="px-6 py-3" scope="col">No. ID CARD</th>
-                                <th class="px-6 py-3" scope="col">Nama</th>
-                                <th class="px-6 py-3" scope="col">Tempat / Tanggal Lahir</th>
-                                <th class="px-6 py-3" scope="col">Alamat</th>
-                                <th class="px-6 py-3" scope="col">Agama </th>
-                                <th class="px-6 py-3" scope="col">NO. Hp</th>
-                                <th class="px-6 py-3" scope="col">Pendidikan Terakhir</th>
-                                <th class="px-6 py-3" scope="col">Gaji</th>
-                                <th class="px-6 py-3" scope="col">Devisi</th>
-                                <th class="px-6 py-3" scope="col">Action</th>
+                                <th class="px-6 py-3" scope="col">
+                                    No
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Nomor KTP
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Nama
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Nomor Telephone
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Alamat
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($employees)
-                                @foreach ($employees as $key => $employee)
+                            @if ($customer_orders)
+                                @foreach ($customer_orders as $key => $customer_order)
                                     <tr class="border bg-white dark:border-gray-700 dark:bg-gray-800">
+                                        <th class="px-6 py-4">
+                                            {{ ($customer_orders->currentPage() - 1) * $customer_orders->perPage() + $loop->iteration }}
+                                        </th>
                                         <td class="px-6 py-4">
-                                            {{ ($employees->currentPage() - 1) * $employees->perPage() + $loop->iteration }}
+                                            {{ $customer_order->ktp_id }}
                                         </td>
-                                        <td class="px-6 py-4">{{ $employee->id_card }}</td>
-                                        <td class="px-6 py-4">{{ $employee->name }}</td>
-                                        <td class="text-nowrap px-6 py-4">{{ $employee->place_birth }},
-                                            {{ $employee->date_birth }},
-
-                                        <td class="px-6 py-4">{{ $employee->address }}</td>
-                                        <td class="px-6 py-4">{{ $employee->religion }}</td>
-                                        <td class="px-6 py-4">{{ $employee->phone }}</td>
-                                        <td class="px-6 py-4">{{ $employee->education }}</td>
-                                        <td class="text-nowrap px-6 py-4">
-                                            {{ 'Rp ' . number_format((float) $employee->salary, 0, ',', '.') }}</td>
-
-                                        <td class="px-6 py-4">{{ $employee->devision }}</td>
+                                        <td class="px-6 py-4">
+                                            {{ $customer_order->name }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $customer_order->phone }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $customer_order->address }}
+                                        </td>
                                         <td class="flex items-center px-6 py-4">
-
                                             <a
-                                                href="{{ route('director.employee.edit', ['employee' => $employee->id]) }}">
+                                                href="{{ route('frontdesk.customer_orders.edit', ['customer_order' => $customer_order->id]) }}">
                                                 <svg class="size-6 me-3" xmlns="http://www.w3.org/2000/svg"
                                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                                     stroke="orange">
@@ -88,39 +101,41 @@
                                                         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                                 </svg>
                                             </a>
-                                            <a href="javascript:void(0);" onclick="confirmDelete({{ $employee->id }})">
+                                            <a href="javascript:void(0);"
+                                                onclick="confirmDelete({{ $customer_order->id }})">
                                                 <svg class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="red">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                                 </svg>
                                             </a>
-                                            <form id="delete-form-{{ $employee->id }}" style="display: none;"
-                                                action="{{ route('director.employee.destroy', ['employee' => $employee->id]) }}"
+                                            <form id="delete-form-{{ $customer_order->id }}" style="display: none;"
+                                                action="{{ route('frontdesk.customer_orders.destroy', ['customer_order' => $customer_order->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
+
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
-                                <tr>
-                                    <td class="px-6 py-4 text-center" colspan="6">Data Tidak Tersedia</td>
-                                </tr>
+                                <p>Data Tidak Tersedia</p>
                             @endif
+
                         </tbody>
                     </table>
                     <div class="mt-3">
-                        {{ $employees->links() }}
+
+                        {{ $customer_orders->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     @push('after-scripts')
         <script>
+            // SweetAlert for success and error messages
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
@@ -136,11 +151,14 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
+
                         text: '{{ $error }}',
+
                     });
                 @endforeach
             @endif
 
+            // validate delete
             function confirmDelete(itemId) {
                 Swal.fire({
                     title: 'Are you sure?',
@@ -152,6 +170,25 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        // Submit the form or send an AJAX request to delete the item
+                        document.getElementById('delete-form-' + itemId).submit();
+                    }
+                });
+            }
+
+            // Validate delete
+            function confirmDelete(itemId) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit the form to delete the item
                         document.getElementById('delete-form-' + itemId).submit();
                     }
                 });

@@ -81,7 +81,7 @@ class CarController extends Controller
             $car->update($request->all());
 
             DB::commit();
-            return redirect()->back()->with('success', 'Data Mobil Berhasil Di Tambahkan');
+            return redirect()->back()->with('success', 'Data Mobil Berhasil Di Update');
         } catch (\Throwable $e) {
             DB::rollback();
             return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
@@ -98,7 +98,7 @@ class CarController extends Controller
             $car->delete();
 
             DB::commit();
-            return redirect()->back()->with('success', 'Data Mobil Berhasil Di Tambahkan');
+            return redirect()->back()->with('success', 'Data Mobil Berhasil Di Hapus');
         } catch (\Throwable $e) {
             DB::rollback();
             return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);

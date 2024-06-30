@@ -120,11 +120,10 @@
                                     <select
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                         id="division" name="devision">
-                                        <option value="IT">IT</option>
-                                        <option value="HRD">HRD</option>
-                                        <option value="Finance">Finance</option>
+                                        <option value="IT">Director</option>
                                         <option value="Marketing">Marketing</option>
-                                        <option value="Operational">Operational</option>
+                                        <option value="Frontdesk">Frontdesk</option>
+                                        <option value="Mekanik">Mekanik</option>
                                     </select>
                                 </div>
                                 <div class="mb-3 w-full">

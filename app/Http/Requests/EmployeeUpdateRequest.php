@@ -26,6 +26,7 @@ class EmployeeUpdateRequest extends FormRequest
             'email' => 'required|email',
             'id_card' => 'required|min:5',
             'date_birth' => 'required',
+            'place_birth' => 'required',
             'religion' => 'required|max:30',
             'phone' => 'required|max:20|min:7',
             'education' => 'required',

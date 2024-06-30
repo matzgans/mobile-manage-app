@@ -12,7 +12,7 @@
                                 action="{{ route('director.employee.update', ['employee' => $employee->id]) }}"
                                 method="POST">
                                 @csrf
-                                @method('PUT');
+                                @method('PUT')
                                 <div class="mb-3 grid gap-3 lg:grid-cols-2">
                                     <div class="w-full">
                                         <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -133,11 +133,16 @@
                                     <select
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                         id="division" name="devision">
-                                        <option value="Directur">Directur</option>
-                                        <option value="Kepala Mekanik">Kepala Mekanik</option>
-                                        <option value="Bendahara">Bendahara</option>
-                                        <option value="Marketing">Marketing</option>
-                                        <option value="Operational">Operational</option>
+                                        <option value="Directur"
+                                            {{ $employee->devision == 'Director' ? 'selected' : '' }}>Directur</option>
+                                        <option value="Marketing"
+                                            {{ $employee->devision == 'Marketing' ? 'selected' : '' }}>Marketing
+                                        </option>
+                                        <option value="Frontdesk"
+                                            {{ $employee->devision == 'Frontdesk' ? 'selected' : '' }}>Frontdesk
+                                        </option>
+                                        <option value="Mekanik"
+                                            {{ $employee->devision == 'Mekanik' ? 'selected' : '' }}>Mekanik</option>
                                     </select>
                                 </div>
                                 <div class="mb-3 w-full">

@@ -16,6 +16,10 @@
                             {{ __("You're logged in! Marketing") }}
                         @break
 
+                        @case('frontdesk')
+                            {{ __("You're logged in! FrontDesk") }}
+                        @break
+
                         @default
                             <p>Anda tidak memiliki peran yang ditentukan.</p>
                     @endswitch

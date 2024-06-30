@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CustomerOrdersController;
 use App\Http\Controllers\Director\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Car;
@@ -26,6 +27,9 @@ Route::middleware(['auth', 'role:sales'])->name('sales.')->prefix('sales')->grou
 });
 Route::middleware(['auth', 'role:director'])->name('director.')->prefix('director')->group(function () {
     Route::resource('employee', EmployeeController::class);
+});
+Route::middleware(['auth', 'role:frontdesk'])->name('frontdesk.')->prefix('frontdesk')->group(function () {
+    Route::resource('customer_orders', CustomerOrdersController::class);
 });
 
 require __DIR__ . '/auth.php';

@@ -51,6 +51,7 @@ class EmployeeController extends Controller
                 'password' => bcrypt('password'),
                 'id_card' => $employee['id_card'],
                 'date_birth' => $employee->place_birth . "," . Carbon::parse($employee['date_birth'])->format('d-m-Y'),
+                'place_birth' => $employee['place_birth'],
                 'religion' => $employee['religion'],
                 'phone' => $employee['phone'],
                 'education' => $employee['education'],
@@ -58,6 +59,21 @@ class EmployeeController extends Controller
                 'devision' => $employee['devision'],
                 'address' => $employee['address'],
             ]);
+
+            switch ($data->devision) {
+                case 'Director':
+                    $data->assignRole('director');
+                    break;
+                case 'Marketing':
+                    $data->assignRole('sales');
+                    break;
+                case 'Mekanik':
+                    $data->assignRole('mekanik');
+                    break;
+                case 'Frondesk':
+                    $data->assignRole('frontdesk');
+                    break;
+            }
 
             DB::commit();
             return redirect()->back()->with('success', 'Data Karyawan Berhasil Di Tambahkan');
@@ -88,9 +104,30 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeUpdateRequest $request, User $employee)
     {
+        DB::beginTransaction();
         try {
-
             $employee->update($request->all());
+
+            // Re-fetch the updated employee data
+            $employee->refresh();
+            switch ($employee->devision) {
+                case 'Director':
+                    DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
+                    $employee->assignRole('director');
+                    break;
+                case 'Marketing':
+                    DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
+                    $employee->assignRole('sales');
+                    break;
+                case 'Mekanik':
+                    DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
+                    $employee->assignRole('mekanik');
+                    break;
+                case 'Frontdesk':
+                    DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
+                    $employee->assignRole('frontdesk');
+                    break;
+            }
 
             DB::commit();
             return redirect()->back()->with('success', 'Data Karyawan Berhasil Di Ubah');
