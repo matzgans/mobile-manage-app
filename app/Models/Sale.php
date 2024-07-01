@@ -9,10 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Sale extends Model
 {
     use HasFactory;
-    protected $guarded;
+    protected $guarded = [];
 
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(CustomerOrder::class);
     }
 }

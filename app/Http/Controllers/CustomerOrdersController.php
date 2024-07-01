@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerOrdersStoreRequest;
 use App\Http\Requests\CustomerOrdersUpdateRequest;
+use App\Models\CustomerOrder;
 use App\Models\CustomerOrders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,10 +18,10 @@ class CustomerOrdersController extends Controller
     {
         $search = $request->input('search');
         if ($search) {
-            $customer_orders = CustomerOrders::where('code', 'like', '%' . $search . '%')->paginate(6);
+            $customer_orders = CustomerOrder::where('name', 'like', '%' . $search . '%')->paginate(6);
             return view('pages.frontdesk.customer_orders.index', compact('customer_orders'));
         }
-        $customer_orders = CustomerOrders::paginate(6);
+        $customer_orders = CustomerOrder::paginate(6);
         return view('pages.frontdesk.customer_orders.index', compact('customer_orders'));
     }
 
@@ -40,7 +41,7 @@ class CustomerOrdersController extends Controller
         $customer_orders = $request;
         DB::beginTransaction();
         try {
-            $data = CustomerOrders::create([
+            $data = CustomerOrder::create([
                 'ktp_id' => $customer_orders['ktp_id'],
                 'name' => $customer_orders['name'],
                 'address' => $customer_orders['address'],
@@ -58,7 +59,7 @@ class CustomerOrdersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CustomerOrders $customerOrders)
+    public function show(CustomerOrder $customerOrders)
     {
         //
     }
@@ -66,7 +67,7 @@ class CustomerOrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CustomerOrders $customer_order)
+    public function edit(CustomerOrder $customer_order)
     {
 
         return view('pages.frontdesk.customer_orders.edit', compact('customer_order'));
@@ -75,8 +76,9 @@ class CustomerOrdersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CustomerOrdersUpdateRequest $request, CustomerOrders $customer_order)
+    public function update(CustomerOrdersUpdateRequest $request, CustomerOrder $customer_order)
     {
+        DB::beginTransaction();
         try {
             $customer_order->update($request->all());
             DB::commit();
@@ -90,7 +92,7 @@ class CustomerOrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CustomerOrders $customer_order)
+    public function destroy(CustomerOrder $customer_order)
     {
         DB::beginTransaction();
         try {

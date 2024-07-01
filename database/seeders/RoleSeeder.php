@@ -17,7 +17,8 @@ class RoleSeeder extends Seeder
             'director',
             'sales',
             'frontdesk',
-            'mekanik',
+            'sparepart',
+            'bendahara',
         ];
 
         foreach ($datas as $data) {

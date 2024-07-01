@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('buy_data', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('car_id')->constrained('cars')->cascadeOnDelete();
-            $table->bigInteger('id_ktp');
-            $table->string('name');
-            $table->string('phone');
-            $table->text('address');
-            $table->integer('unit');
+            $table->string('code')->unique();
+            $table->string('buying_date');
+            $table->bigInteger('unit');
             $table->bigInteger('price');
-            $table->bigInteger('price_sum');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('buy_data');
     }
 };

@@ -20,8 +20,10 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             CarSeeder::class,
+            CustomerOrdersSeeder::class,
             SaleSeeder::class,
-            CustomerOrdersSeeder::class
+            BuyDataSeeder::class,
+            SellDataSeeder::class,
         ]);
     }
 }

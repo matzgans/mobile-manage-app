@@ -123,7 +123,8 @@
                                         <option value="IT">Director</option>
                                         <option value="Marketing">Marketing</option>
                                         <option value="Frontdesk">Frontdesk</option>
-                                        <option value="Mekanik">Mekanik</option>
+                                        <option value="Sparepart">Sparepart</option>
+                                        <option value="Bendahara">Bendahara</option>
                                     </select>
                                 </div>
                                 <div class="mb-3 w-full">

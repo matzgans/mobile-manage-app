@@ -20,6 +20,14 @@
                             {{ __("You're logged in! FrontDesk") }}
                         @break
 
+                        @case('sparepart')
+                            {{ __("You're logged in! Sparepart") }}
+                        @break
+
+                        @case('bendahara')
+                            {{ __("You're logged in! Bendahara") }}
+                        @break
+
                         @default
                             <p>Anda tidak memiliki peran yang ditentukan.</p>
                     @endswitch

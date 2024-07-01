@@ -23,15 +23,30 @@
                             <x-nav-link :href="route('director.employee.index')" :active="request()->routeIs('director.employee.*')">
                                 {{ __('Data Karyawan') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('director.buy.index')" :active="request()->routeIs('director.buy.*')">
+                                {{ __('Data Pembelian') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('director.sell.index')" :active="request()->routeIs('director.sell.*')">
+                                {{ __('Data Penjualan') }}
+                            </x-nav-link>
                         @break
 
                         @case('sales')
                             <x-nav-link :href="route('sales.car.index')" :active="request()->routeIs('sales.car.*')">
                                 {{ __('Data Mobil') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('sales.sales.index')" :active="request()->routeIs('sales.sales.*')">
+                                {{ __('Data Pembelian Barang') }}
+                            </x-nav-link>
                         @break
 
                         @case('frontdesk')
+                            <x-nav-link :href="route('frontdesk.customer_orders.index')" :active="request()->routeIs('frontdesk.customer_orders.*')">
+                                {{ __('Pesanan Pelanggan') }}
+                            </x-nav-link>
+                        @break
+
+                        @case('sparepart')
                             <x-nav-link :href="route('frontdesk.customer_orders.index')" :active="request()->routeIs('frontdesk.customer_orders.*')">
                                 {{ __('Pesanan Pelanggan') }}
                             </x-nav-link>

@@ -46,5 +46,37 @@ class UserSeeder extends Seeder
         ]);
 
         $user->assignRole('sales');
+        $user = User::create([
+            'name' => 'amat',
+            'email' => 'amat@gmail.com',
+            'id_card' => fake()->randomNumber(),
+            'password' => bcrypt('password'),
+            'place_birth' => "Padang",
+            'date_birth' => '04-01-1978',
+            'address' => 'Padang',
+            'religion' => 'Islam',
+            'phone' => fake()->phoneNumber(),
+            'education' => 'S.T',
+            'devision' => 'Sparepart',
+            'salary' => 201031,
+        ]);
+
+        $user->assignRole('sparepart');
+        $user = User::create([
+            'name' => 'adi',
+            'email' => 'adi@gmail.com',
+            'id_card' => fake()->randomNumber(),
+            'password' => bcrypt('password'),
+            'place_birth' => "Padang",
+            'date_birth' => '04-01-1978',
+            'address' => 'Padang',
+            'religion' => 'Islam',
+            'phone' => fake()->phoneNumber(),
+            'education' => 'S.T',
+            'devision' => 'Frontdesk',
+            'salary' => 201031,
+        ]);
+
+        $user->assignRole('frontdesk');
     }
 }

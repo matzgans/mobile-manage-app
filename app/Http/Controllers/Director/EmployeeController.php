@@ -67,11 +67,14 @@ class EmployeeController extends Controller
                 case 'Marketing':
                     $data->assignRole('sales');
                     break;
-                case 'Mekanik':
-                    $data->assignRole('mekanik');
+                case 'Sparepart':
+                    $data->assignRole('sparepart');
                     break;
                 case 'Frontdesk':
                     $data->assignRole('frontdesk');
+                    break;
+                case 'Bendahara':
+                    $data->assignRole('bendahara');
                     break;
             }
 
@@ -119,13 +122,17 @@ class EmployeeController extends Controller
                     DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
                     $employee->assignRole('sales');
                     break;
-                case 'Mekanik':
+                case 'Sparepart':
                     DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
-                    $employee->assignRole('mekanik');
+                    $employee->assignRole('sparepart');
                     break;
                 case 'Frontdesk':
                     DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
                     $employee->assignRole('frontdesk');
+                    break;
+                case 'Bendahara':
+                    DB::table('model_has_roles')->where('model_id', $employee->id)->delete();
+                    $employee->assignRole('bendahara');
                     break;
             }
 

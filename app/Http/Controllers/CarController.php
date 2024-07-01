@@ -76,10 +76,9 @@ class CarController extends Controller
      */
     public function update(CarUpdateRequest $request, Car $car)
     {
+        DB::beginTransaction();
         try {
-
             $car->update($request->all());
-
             DB::commit();
             return redirect()->back()->with('success', 'Data Mobil Berhasil Di Update');
         } catch (\Throwable $e) {

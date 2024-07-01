@@ -77,7 +77,7 @@
                                         href="{{ route('sales.car.index') }}">Kembali</a>
                                     <button
                                         class="dark:focus:ring-[#3b5998]/55 text-nowrap mb-2 me-2 inline-flex items-center justify-center rounded-lg bg-secondary px-5 py-3.5 text-center text-sm font-medium text-white hover:bg-orange-400 focus:outline-none focus:ring-4 focus:ring-[#3b5998]/50"
-                                        href="{{ route('sales.car.create') }}">
+                                        type="submit">
                                         <svg class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"

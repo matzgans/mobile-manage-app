@@ -141,8 +141,12 @@
                                         <option value="Frontdesk"
                                             {{ $employee->devision == 'Frontdesk' ? 'selected' : '' }}>Frontdesk
                                         </option>
-                                        <option value="Mekanik"
-                                            {{ $employee->devision == 'Mekanik' ? 'selected' : '' }}>Mekanik</option>
+                                        <option value="Sparepart"
+                                            {{ $employee->devision == 'Sparepart' ? 'selected' : '' }}>Sparepart
+                                        </option>
+                                        <option value="Bendahara"
+                                            {{ $employee->devision == 'Bendahara' ? 'selected' : '' }}>Bendahara
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="mb-3 w-full">
