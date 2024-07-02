@@ -52,6 +52,15 @@
                             </x-nav-link>
                         @break
 
+                        @case('bendahara')
+                            <x-nav-link :href="route('bendahara.sell.index')" :active="request()->routeIs('bendahara.sell.*')">
+                                {{ __('Data Penjualan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('bendahara.buy.index')" :active="request()->routeIs('bendahara.buy.*')">
+                                {{ __('Data Pembelian') }}
+                            </x-nav-link>
+                        @break
+
                         @default
                             <p>Anda tidak memiliki peran yang ditentukan.</p>
                     @endswitch

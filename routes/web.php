@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Bendahara\BuyDataController as BendaharaBuyDataController;
+use App\Http\Controllers\Bendahara\SellDataController as BendaharaSellDataController;
 use App\Http\Controllers\BuyDataController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CustomerOrdersController;
@@ -35,6 +37,10 @@ Route::middleware(['auth', 'role:director'])->name('director.')->prefix('directo
 });
 Route::middleware(['auth', 'role:frontdesk'])->name('frontdesk.')->prefix('frontdesk')->group(function () {
     Route::resource('customer_orders', CustomerOrdersController::class);
+});
+Route::middleware(['auth', 'role:bendahara'])->name('bendahara.')->prefix('bendahara')->group(function () {
+    Route::resource('sell', BendaharaSellDataController::class);
+    Route::resource('buy', BendaharaBuyDataController::class);
 });
 
 require __DIR__ . '/auth.php';

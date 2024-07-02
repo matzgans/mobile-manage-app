@@ -78,5 +78,21 @@ class UserSeeder extends Seeder
         ]);
 
         $user->assignRole('frontdesk');
+        $user = User::create([
+            'name' => 'suciyanti',
+            'email' => 'suciyanti@gmail.com',
+            'id_card' => fake()->randomNumber(),
+            'password' => bcrypt('password'),
+            'place_birth' => "Jakarta",
+            'date_birth' => '04-03-1978',
+            'address' => 'Jl. Pegangsaan',
+            'religion' => 'Hindu',
+            'phone' => fake()->phoneNumber(),
+            'education' => 'S.T',
+            'devision' => 'Bendahara',
+            'salary' => 201031,
+        ]);
+
+        $user->assignRole('bendahara');
     }
 }
