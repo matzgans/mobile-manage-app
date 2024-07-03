@@ -38,6 +38,12 @@ Route::middleware(['auth', 'role:director'])->name('director.')->prefix('directo
 Route::middleware(['auth', 'role:frontdesk'])->name('frontdesk.')->prefix('frontdesk')->group(function () {
     Route::resource('customer_orders', CustomerOrdersController::class);
 });
+Route::middleware(['auth', 'role:frontdesk'])->name('frontdesk.')->prefix('frontdesk')->group(function () {
+    Route::resource('customer_orders', CustomerOrdersController::class);
+});
+Route::middleware(['auth', 'role:sparepart'])->name('sparepart.')->prefix('sparepart')->group(function () {
+    Route::get('buy', [BuyDataController::class, 'index'])->name('buy.index');
+});
 Route::middleware(['auth', 'role:bendahara'])->name('bendahara.')->prefix('bendahara')->group(function () {
     Route::resource('sell', BendaharaSellDataController::class);
     Route::resource('buy', BendaharaBuyDataController::class);

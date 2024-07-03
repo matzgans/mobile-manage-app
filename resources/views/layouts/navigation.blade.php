@@ -47,8 +47,8 @@
                         @break
 
                         @case('sparepart')
-                            <x-nav-link :href="route('frontdesk.customer_orders.index')" :active="request()->routeIs('frontdesk.customer_orders.*')">
-                                {{ __('Pesanan Pelanggan') }}
+                            <x-nav-link :href="route('sparepart.buy.index')" :active="request()->routeIs('sparepart.buy.*')">
+                                {{ __('Data Pembelian') }}
                             </x-nav-link>
                         @break
 
