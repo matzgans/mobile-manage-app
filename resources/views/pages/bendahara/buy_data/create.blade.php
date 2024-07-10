@@ -10,7 +10,7 @@
                     </div>
                     <div class="grid gap-4 lg:grid-cols-2">
                         <div class="mt-4 w-full">
-                            <form class="mx-auto max-w-full" action="{{ route('bendahara.sell.store') }}" method="POST">
+                            <form class="mx-auto max-w-full" action="{{ route('bendahara.buy.store') }}" method="POST">
                                 @csrf
                                 <div class="mb-3 w-full">
                                     <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -23,11 +23,11 @@
                                 </div>
                                 <div class="mb-3 w-full">
                                     <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                                        for="sell_data">Tanggal Penjualan</label>
+                                        for="buying_date">Tanggal Pembelian</label>
                                     <div class="relative">
                                         <input
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                                            id="sell_data" name="sale_date" type="date">
+                                            id="buying_date" name="buying_date" type="date">
                                     </div>
                                 </div>
                                 <div class="mb-3 w-full">
@@ -52,7 +52,7 @@
                                 <div class="mb-3 grid w-full gap-3 lg:grid-cols-2">
 
                                     <a class="mb-2 me-2 flex items-center justify-center rounded-lg border border-secondary bg-white px-5 py-2.5 text-sm font-medium text-secondary hover:bg-gray-100 hover:text-orange-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-                                        href="{{ route('bendahara.sell.index') }}">Kembali</a>
+                                        href="{{ route('bendahara.buy.index') }}">Kembali</a>
                                     <button
                                         class="dark:focus:ring-[#3b5998]/55 text-nowrap mb-2 me-2 inline-flex items-center justify-center rounded-lg bg-secondary px-5 py-3.5 text-center text-sm font-medium text-white hover:bg-orange-400 focus:outline-none focus:ring-4 focus:ring-[#3b5998]/50"
                                         type="submit">
@@ -62,7 +62,7 @@
                                                 d="M12 4.5v15m7.5-7.5h-15" />
                                         </svg>
 
-                                        Tambah Penjualan
+                                        Tambah Pembelian
                                     </button>
                                 </div>
                             </form>

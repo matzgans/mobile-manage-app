@@ -13,7 +13,7 @@ use App\Models\Car;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.landing.welcome');
 });
 
 Route::get('/dashboard', function () {

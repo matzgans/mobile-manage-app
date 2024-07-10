@@ -44,7 +44,7 @@ class BuyDataController extends Controller
             BuyData::create(
                 [
                     'code' => $request['code'],
-                    'sale_date' => $request['sale_date'],
+                    'buying_date' => $request['buying_date'],
                     'unit' => $request['unit'],
                     'price' => $request['price'],
                 ]

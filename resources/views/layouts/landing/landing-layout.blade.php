@@ -17,8 +17,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-slate-300">
-        @include('layouts.navigation')
+    <div class="flex min-h-screen items-center justify-center bg-primary">
 
         <!-- Page Heading -->
         @isset($header)
