@@ -6,7 +6,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="text-2xl font-bold">
 
-                        {{ __('Data Pembelian Pelanggan') }}
+                        {{ __('Data Penjualan Barang') }}
                     </div>
                     <div class="mt-3 flex">
                         <div class="me-3 w-full">
@@ -41,7 +41,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
 
-                            Tambah Pembelian Pelanggan
+                            Tambah Penjualan Barang
                         </a>
 
 
@@ -103,10 +103,10 @@
                                         <td class="px-6 py-4">
                                             {{ $sale->unit }}
                                         </td>
-                                        <td class="px-6 py-4">
+                                        <td class="text-nowrap px-6 py-4">
                                             {{ 'Rp ' . number_format((float) $sale->price, 0, ',', '.') }}
                                         </td>
-                                        <td class="px-6 py-4">
+                                        <td class="text-nowrap px-6 py-4">
                                             {{ 'Rp ' . number_format((float) $sale->price * $sale->unit, 0, ',', '.') }}
                                         </td>
                                         <td class="flex items-center px-6 py-4">

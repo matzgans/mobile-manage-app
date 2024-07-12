@@ -53,7 +53,7 @@ class SaleController extends Controller
                 'price' => $sale['price'],
             ]);
             DB::commit();
-            return redirect()->back()->with('success', 'Data Pembelian Pelanggan Berhasil Di Tambahkan');
+            return redirect()->back()->with('success', 'Data Penjualan Barang Berhasil Di Tambahkan');
         } catch (\Throwable $e) {
             DB::rollBack();
             return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
@@ -87,7 +87,7 @@ class SaleController extends Controller
         try {
             $sale->update($request->all());
             DB::commit();
-            return redirect()->back()->with('success', 'Data Pemesanan Pelanggan Berhasil Di Ubah');
+            return redirect()->back()->with('success', 'Data Penjualan Barang Berhasil Di Ubah');
         } catch (\Throwable $e) {
             DB::rollback();
             return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
@@ -104,7 +104,7 @@ class SaleController extends Controller
             $sale->delete();
 
             DB::commit();
-            return redirect()->back()->with('success', 'Data Pemesanan Berhasil Di Hapus');
+            return redirect()->back()->with('success', 'Data Penjualan Barang Berhasil Di Hapus');
         } catch (\Throwable $e) {
             DB::rollback();
             return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);

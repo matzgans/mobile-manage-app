@@ -6,9 +6,9 @@
                 <div class="p-6 text-gray-900">
                     <div class="text-2xl font-bold">
 
-                        {{ __('Update Pembelian Pelanggan') }}
+                        {{ __('Update Penjualan Barang') }}
                     </div>
-                    <div class="grid gap-4 lg:grid-cols-2">
+                    <div class="grid gap-6 lg:grid-cols-2">
                         <div class="mt-4 w-full">
                             <form class="mx-auto max-w-full"
                                 action="{{ route('sales.sales.update', ['sale' => $sale->id]) }}" method="POST">
@@ -73,7 +73,7 @@
                                                 d="M12 4.5v15m7.5-7.5h-15" />
                                         </svg>
 
-                                        Update Pembelian Pelanggan
+                                        Update Penjualan Barang
                                     </button>
                                 </div>
                             </form>
@@ -81,8 +81,8 @@
 
                         </div>
                         <div>
-                            <img src="{{ asset('/image/create-image.png') }}" srcset="" alt=""
-                                width="100%">
+                            <img src="{{ asset('assets/images/create-image.png') }}" srcset="" alt=""
+                                width="80%">
                         </div>
                     </div>
                 </div>

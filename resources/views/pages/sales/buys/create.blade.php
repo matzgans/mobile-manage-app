@@ -75,7 +75,7 @@
 
                         </div>
                         <div>
-                            <img src="{{ asset('/image/create-image.png') }}" srcset="" alt=""
+                            <img src="{{ asset('assets/images/create-image.png') }}" srcset="" alt=""
                                 width="100%">
                         </div>
                     </div>

@@ -36,7 +36,7 @@
                                 {{ __('Data Mobil') }}
                             </x-nav-link>
                             <x-nav-link :href="route('sales.sales.index')" :active="request()->routeIs('sales.sales.*')">
-                                {{ __('Data Pembelian Barang') }}
+                                {{ __('Data Penjualan Barang') }}
                             </x-nav-link>
                         @break
 

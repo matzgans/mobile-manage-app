@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Bendahara;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BendaharaSellStoreRequest;
 use App\Http\Requests\BendaharaSellUpdateRequest;
+use App\Models\Sale;
 use App\Models\SellData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +19,13 @@ class SellDataController extends Controller
     {
         $search = $request->input('search');
         if ($search) {
-            $sells = SellData::where('code', 'like', '%' . $search . "%")->paginate(6);
-            return view('pages.bendahara.sell_data.index', compact('sells'));
+            $sales = Sale::with('customer')->whereHas('customer', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })->paginate(6);
+            return view('pages.bendahara.sell_data.index', compact('sales'));
         }
-
-        $sells = SellData::paginate(6);
-        return view('pages.bendahara.sell_data.index', compact('sells'));
+        $sales = Sale::paginate(6);
+        return view('pages.bendahara.sell_data.index', compact('sales'));
     }
 
     /**
