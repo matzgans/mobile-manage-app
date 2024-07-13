@@ -96,7 +96,8 @@
                                             <input
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
                                                 id="phone" name="phone" type="number"
-                                                value="{{ $employee->phone }}" placeholder="Masukan Nomor HP">
+                                                value="{{ gettype($employee->phone) == 'string' ? intval(str_replace(['-', '+', ')', '(', ' '], '', $employee->phone)) : $employee->phone }}"
+                                                placeholder="Masukan Nomor HP">
                                         </div>
                                     </div>
                                 </div>

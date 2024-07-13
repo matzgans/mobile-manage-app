@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
 use App\Models\SellData;
 use Illuminate\Http\Request;
 
@@ -14,12 +15,13 @@ class SellDataController extends Controller
     {
         $search = $request->input('search');
         if ($search) {
-            $sells = SellData::where('code', 'like', '%' . $search . "%")->paginate(6);
-            return view('pages.director.sell_data.index', compact('sells'));
+            $sales = Sale::with('customer')->whereHas('customer', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })->paginate(6);
+            return view('pages.director.sell_data.index', compact('sales'));
         }
-
-        $sells = SellData::paginate(6);
-        return view('pages.director.sell_data.index', compact('sells'));
+        $sales = Sale::paginate(6);
+        return view('pages.director.sell_data.index', compact('sales'));
     }
 
     /**

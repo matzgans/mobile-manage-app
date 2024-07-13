@@ -1,13 +1,16 @@
 <x-app-layout>
+
     <div class="py-12">
         <div class="mx-auto max-w-full sm:px-6 lg:px-8">
-            <div class="overflow-x-auto bg-white shadow-sm sm:rounded-lg">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="text-2xl font-bold">
-                        {{ __('Data Penjualan') }}
+
+                        {{ __('Data Penjualan Barang') }}
                     </div>
                     <div class="mt-3 flex">
                         <div class="me-3 w-full">
+
                             <form class="max-w-full" action="{{ route('director.sell.index') }}">
                                 <label class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     for="default-search">Search</label>
@@ -20,7 +23,7 @@
                                         </svg>
                                     </div>
                                     <input
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 ps-10 text-sm text-gray-900 focus:border-secondary focus:ring-secondary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-secondary dark:focus:ring-secondary"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                         id="default-search" name="search" type="search"
                                         value="{{ request('search') }}" placeholder="Masukan Kode Mobil" />
                                     <button
@@ -28,57 +31,92 @@
                                         type="submit">Search</button>
                                 </div>
                             </form>
+
                         </div>
 
+
+
                     </div>
+
                 </div>
-                <div class="overflow-x-auto px-6 pb-3">
+                <div class="relative overflow-x-auto px-6 pb-3">
                     <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
                         <thead class="bg-primary text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                             <tr class="border text-white">
-                                <th class="px-6 py-3" scope="col">No</th>
-                                <th class="px-6 py-3" scope="col">Code Barang</th>
-                                <th class="px-6 py-3" scope="col">Tanggal Pembelian</th>
-                                <th class="px-6 py-3" scope="col">Per Unit</th>
-                                <th class="px-6 py-3" scope="col">Harga (Rp)</th>
-                                <th class="px-6 py-3" scope="col">Total Nominal</th>
+                                <th class="px-6 py-3" scope="col">
+                                    No
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Nama
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Nomor HP
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Alamat
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Kode Mobil
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Unit
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Harga
+                                </th>
+                                <th class="px-6 py-3" scope="col">
+                                    Total Nominal
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($sells)
-                                @foreach ($sells as $key => $sell)
+                            @if ($sales)
+                                @foreach ($sales as $key => $sale)
                                     <tr class="border bg-white dark:border-gray-700 dark:bg-gray-800">
+                                        <th class="px-6 py-4">
+                                            {{ ($sales->currentPage() - 1) * $sales->perPage() + $loop->iteration }}
+                                        </th>
                                         <td class="px-6 py-4">
-                                            {{ ($sells->currentPage() - 1) * $sells->perPage() + $loop->iteration }}
+                                            {{ $sale->customer->name }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $sale->customer->phone }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $sale->customer->address }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $sale->car->code }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $sale->unit }}
+                                        </td>
+                                        <td class="text-nowrap px-6 py-4">
+                                            {{ 'Rp ' . number_format((float) $sale->price, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-nowrap px-6 py-4">
+                                            {{ 'Rp ' . number_format((float) $sale->price * $sale->unit, 0, ',', '.') }}
                                         </td>
 
-                                        <td class="px-6 py-4">{{ $sell->code }}</td>
-                                        <td class="px-6 py-4">{{ $sell->sale_date }}</td>
-                                        <td class="px-6 py-4">{{ $sell->unit }}</td>
-                                        <td class="text-nowrap px-6 py-4">
-                                            {{ 'Rp ' . number_format((float) $sell->price, 0, ',', '.') }}</td>
-                                        <td class="text-nowrap px-6 py-4">
-                                            {{ 'Rp ' . number_format((float) $sell->price * $sell->unit, 0, ',', '.') }}
-                                        </td>
                                     </tr>
                                 @endforeach
                             @else
-                                <tr>
-                                    <td class="px-6 py-4 text-center" colspan="6">Data Tidak Tersedia</td>
-                                </tr>
+                                <p>Data Tidak Tersedia</p>
                             @endif
+
                         </tbody>
                     </table>
                     <div class="mt-3">
-                        {{ $sells->links() }}
+
+                        {{ $sales->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     @push('after-scripts')
         <script>
+            // SweetAlert for success and error messages
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
@@ -94,26 +132,12 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
+
                         text: '{{ $error }}',
+
                     });
                 @endforeach
             @endif
-
-            function confirmDelete(itemId) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('delete-form-' + itemId).submit();
-                    }
-                });
-            }
         </script>
     @endpush
 </x-app-layout>
