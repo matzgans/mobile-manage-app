@@ -42,7 +42,7 @@ Route::middleware(['auth', 'role:frontdesk'])->name('frontdesk.')->prefix('front
     Route::resource('customer_orders', CustomerOrdersController::class);
 });
 Route::middleware(['auth', 'role:sparepart'])->name('sparepart.')->prefix('sparepart')->group(function () {
-    Route::get('buy', [BuyDataController::class, 'index'])->name('buy.index');
+    Route::resource('buy', BuyDataController::class);
 });
 Route::middleware(['auth', 'role:bendahara'])->name('bendahara.')->prefix('bendahara')->group(function () {
     Route::resource('sell', BendaharaSellDataController::class);
